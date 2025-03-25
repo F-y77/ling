@@ -1,6 +1,9 @@
+GLOBAL.setmetatable(env, { __index = function(t, k) return GLOBAL.rawget(GLOBAL, k) end })
+
 PrefabFiles = {
 	"ling",
 	"ling_none",
+	"ling_backpack",
 }
 
 Assets = {
@@ -33,12 +36,24 @@ Assets = {
 	
 	Asset( "IMAGE", "images/names_gold_ling.tex" ),
     Asset( "ATLAS", "images/names_gold_ling.xml" ),
+
+    Asset("ATLAS", "images/inventoryimages/ling_backpack.xml"),
+    Asset("IMAGE", "images/inventoryimages/ling_backpack.tex"),
 }
 
 AddMinimapAtlas("images/map_icons/ling.xml")
 
 local require = GLOBAL.require
 local STRINGS = GLOBAL.STRINGS
+
+-- 初始化LING表
+STRINGS.CHARACTERS.LING = {}
+
+-- 导入主模块
+modimport("scripts/main.lua")
+
+-- 加载角色对话文件
+STRINGS.CHARACTERS.LING = require "speech_ling"
 
 -- 角色选择界面的文本
 STRINGS.CHARACTER_TITLES.ling = "气象学家"  -- 角色头衔
@@ -65,3 +80,27 @@ local skin_modes = {
 
 -- Add mod character to mod character list. Also specify a gender. Possible genders are MALE, FEMALE, ROBOT, NEUTRAL, and PLURAL.
 AddModCharacter("ling", "FEMALE", skin_modes)
+
+-- 直接在这里定义配方
+local Ingredient = GLOBAL.Ingredient
+local TECH = GLOBAL.TECH
+local RECIPETABS = GLOBAL.RECIPETABS
+
+-- 熊猫背包配方
+AddRecipe(
+    "ling_backpack",                 -- 配方名称
+    {                                -- 材料列表
+        Ingredient("silk", 6),       -- 蜘蛛丝
+        Ingredient("coontail", 4),   -- 浣熊尾巴
+        Ingredient("bearger_fur", 1) -- 熊皮
+    },
+    RECIPETABS.SURVIVAL,            -- 在生存栏制作
+    TECH.SCIENCE_TWO,               -- 需要科技二本
+    nil,                            -- placer
+    nil,                            -- min_spacing
+    true,                           -- nounlock (禁用蓝图功能)
+    nil,                            -- numtogive
+    nil,                            -- builder_tag
+    "images/inventoryimages.xml",   -- 使用游戏内置的图集
+    "backpack.tex"                  -- 使用游戏内置的图标
+)
