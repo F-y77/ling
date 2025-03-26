@@ -2,11 +2,12 @@
 local GLOBAL = GLOBAL or _G
 
 -- 使用更可靠的方式获取游戏函数
--- AddRecipe 是全局函数，不是 GLOBAL 的成员
 local Ingredient = GLOBAL.Ingredient
 local TECH = GLOBAL.TECH
 local RECIPETABS = GLOBAL.RECIPETABS
 local STRINGS = GLOBAL.STRINGS
+local Recipe = GLOBAL.Recipe
+local AllRecipes = GLOBAL.AllRecipes
 
 local function Injectatlas(ingredients, amount)
     local atlas = 'images/inventoryimages/' .. ingredients .. '.xml'
@@ -18,23 +19,19 @@ local function Injectproductimg(product)
     return atlas
 end
 
--- 熊猫背包配方 - 使用全局的 AddRecipe 函数
-AddRecipe(
-    "ling_backpack",                 -- 配方名称
-    {                                -- 材料列表
-        Ingredient("silk", 6),       -- 蜘蛛丝
-        Ingredient("coontail", 4),   -- 浣熊尾巴
-        Ingredient("bearger_fur", 1) -- 熊皮
-    },
-    RECIPETABS.SURVIVAL,            -- 在生存栏制作
-    TECH.SCIENCE_TWO,               -- 需要科技二本
-    nil,                            -- placer
-    nil,                            -- min_spacing
-    true,                           -- nounlock (禁用蓝图功能)
-    nil,                            -- numtogive
-    nil,                            -- builder_tag
-    "images/inventoryimages.xml",   -- 使用游戏内置的图集
-    "backpack.tex"                  -- 使用游戏内置的图标
-)
+-- 添加专属制作标签
+local function AddRecipe2(name, ingredients, tech, config, tags)
+    if not config then config = {} end
+    if not tags then tags = {} end
+    
+    local recipe = Recipe(name, ingredients, config.tab or RECIPETABS.SURVIVAL, tech, config.placer, 
+                         config.min_spacing, config.nounlock, config.numtogive, config.builder_tag, 
+                         config.atlas, config.image)
+    
+    if tags then
+        recipe.tags = tags
+    end
+    
+    return recipe
+end
 
--- 不要使用recipe_all表或其他复杂的配方定义方式 

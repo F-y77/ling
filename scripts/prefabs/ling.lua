@@ -74,6 +74,13 @@ local master_postinit = function(inst)
 	
 	-- 饥饿速率（可选）
 	inst.components.hunger.hungerrate = 1 * TUNING.WILSON_HUNGER_RATE  -- 标准饥饿速率
+
+	--可以读书
+	inst:AddComponent("reader") 
+
+	--回San光环
+	inst:AddComponent("sanityaura") 
+	inst.components.sanityaura.aura = 2 * TUNING.SANITYAURA_MED
 	
 	-- 根据设定，绫是气象学家，可以考虑后续添加与天气相关的特殊能力
 	-- 例如：暖雨、酸雨、晴天、阴天等天气魔法
@@ -83,6 +90,9 @@ local master_postinit = function(inst)
 	
 	-- 根据设定，绫可以制作特殊武器
 	-- 例如：汵风（小刀，附带吸血效果）和冷风（太刀，附带冰冻效果）
+	
+	-- 添加专属制作标签
+	inst:AddTag("ling_build")
 	
 	inst.OnLoad = onload
     inst.OnNewSpawn = onload

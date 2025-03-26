@@ -93,26 +93,159 @@ local skin_modes = {
 -- Add mod character to mod character list. Also specify a gender. Possible genders are MALE, FEMALE, ROBOT, NEUTRAL, and PLURAL.
 AddModCharacter("ling", "FEMALE", skin_modes)
 
--- 直接在这里定义配方
-local Ingredient = GLOBAL.Ingredient
-local TECH = GLOBAL.TECH
-local RECIPETABS = GLOBAL.RECIPETABS
-
--- 熊猫背包配方
-AddRecipe(
+-- 熊猫背包配方 - 使用专属制作标签
+AddRecipe2(
     "ling_backpack",                 -- 配方名称
     {                                -- 材料列表
         Ingredient("silk", 6),       -- 蜘蛛丝
         Ingredient("coontail", 4),   -- 浣熊尾巴
         Ingredient("bearger_fur", 1) -- 熊皮
     },
-    RECIPETABS.SURVIVAL,            -- 在生存栏制作
     TECH.SCIENCE_TWO,               -- 需要科技二本
-    nil,                            -- placer
-    nil,                            -- min_spacing
-    true,                           -- nounlock (禁用蓝图功能)
-    nil,                            -- numtogive
-    nil,                            -- builder_tag
-    "images/inventoryimages.xml",   -- 使用游戏内置的图集
-    "backpack.tex"                  -- 使用游戏内置的图标
+    {
+        builder_tag = "ling_build",  -- 只有绫可以制作
+        atlas = "images/inventoryimages/ling_backpack.xml", 
+        image = "ling_backpack.tex"
+    }, 
+    {"CHARACTER", "CLOTHING"}        -- 分类标签
 )
+
+-- 不要使用recipe_all表或其他复杂的配方定义方式 
+
+-- 熊皮制作配方 - 消耗100滴血
+AddRecipe2(
+    "bearger_fur",                  -- 配方名称
+    {                               -- 材料列表
+        Ingredient(CHARACTER_INGREDIENT.HEALTH, 100)  -- 消耗100点生命值
+    },
+    TECH.NONE,                      -- 不需要科技
+    {
+        builder_tag = "ling_build", -- 只有绫可以制作
+        no_deconstruction = true,   -- 不能拆解
+        actionstr = "制作",         -- 制作按钮文本
+        atlas = "images/inventoryimages.xml",
+        image = "bearger_fur.tex"
+    },
+    {"CHARACTER"}                   -- 分类标签
+)
+
+-- 猫尾制作配方 - 消耗15滴血
+AddRecipe2(
+    "coontail",                     -- 配方名称
+    {                               -- 材料列表
+        Ingredient(CHARACTER_INGREDIENT.HEALTH, 15)  -- 消耗15点生命值
+    },
+    TECH.NONE,                      -- 不需要科技
+    {
+        builder_tag = "ling_build", -- 只有绫可以制作
+        no_deconstruction = true,   -- 不能拆解
+        actionstr = "制作",         -- 制作按钮文本
+        atlas = "images/inventoryimages.xml",
+        image = "coontail.tex"
+    },
+    {"CHARACTER"}                   -- 分类标签
+)
+
+-- 火把制作配方 - 消耗1个树枝和5点精神值
+AddRecipe2(
+    "torch",                        -- 配方名称
+    {                               -- 材料列表
+        Ingredient("twigs", 1),     -- 1个树枝
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 5)  -- 消耗5点精神值
+    },
+    TECH.NONE,                      -- 不需要科技
+    {
+        builder_tag = "ling_build", -- 只有绫可以制作
+        no_deconstruction = true,   -- 不能拆解
+        actionstr = "制作",         -- 制作按钮文本
+    },
+    {"CHARACTER", "LIGHT"}          -- 分类标签
+)
+
+-- 噩梦燃料制作配方 - 消耗20点精神值
+AddRecipe2(
+    "nightmarefuel",                -- 配方名称
+    {                               -- 材料列表
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 10)  -- 消耗10点精神值
+    },
+    TECH.NONE,                      -- 不需要科技
+    {
+        builder_tag = "ling_build", -- 只有绫可以制作
+        no_deconstruction = true,   -- 不能拆解
+        actionstr = "制作",         -- 制作按钮文本
+    },
+    {"CHARACTER", "REFINE"}         -- 分类标签
+)
+
+-- 兔毛配方 - 消耗30滴血
+AddRecipe2(
+    "manrabbit_tail",                   -- 配方名称
+    {                               -- 材料列表
+        Ingredient(CHARACTER_INGREDIENT.HEALTH, 30)  -- 消耗30点生命值
+    },
+    TECH.NONE,                      -- 不需要科技
+    {
+        builder_tag = "ling_build", -- 只有绫可以制作
+        no_deconstruction = true,   -- 不能拆解
+        actionstr = "制作",         -- 制作按钮文本
+        atlas = "images/inventoryimages.xml",
+        image = "manrabbit_tail.tex"
+    },
+    {"CHARACTER"}                   -- 分类标签
+)
+
+-- 蜘蛛网配方 - 消耗10滴血和5点精神值
+AddRecipe2(
+    "silk",                         -- 配方名称
+    {                               -- 材料列表
+        Ingredient(CHARACTER_INGREDIENT.HEALTH, 10),  -- 消耗10点生命值
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 5)    -- 消耗5点精神值
+    },
+    TECH.NONE,                      -- 不需要科技
+    {
+        builder_tag = "ling_build", -- 只有绫可以制作
+        no_deconstruction = true,   -- 不能拆解
+        actionstr = "制作",         -- 制作按钮文本
+    },
+    {"CHARACTER", "REFINE"}         -- 分类标签
+)
+
+-- 治疗药膏配方 - 消耗5滴血和2个石头
+AddRecipe2(
+    "healingsalve",                 -- 配方名称
+    {                               -- 材料列表
+        Ingredient(CHARACTER_INGREDIENT.HEALTH, 5),  -- 消耗5点生命值
+        Ingredient("rocks", 2)                       -- 2个石头
+    },
+    TECH.NONE,                      -- 不需要科技
+    {
+        builder_tag = "ling_build", -- 只有绫可以制作
+        no_deconstruction = true,   -- 不能拆解
+        actionstr = "制作",         -- 制作按钮文本
+    },
+    {"CHARACTER", "RESTORATION"}    -- 分类标签
+)
+
+-- 扑腾绷带配方 - 消耗1个蝴蝶翅膀和5点精神值
+AddRecipe2(
+    "bandage_butterflywings",                      -- 配方名称
+    {                               -- 材料列表
+        Ingredient("butterflywings", 1),             -- 1个蝴蝶翅膀
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 10)   -- 消耗5点精神值
+    },
+    TECH.NONE,                      -- 不需要科技
+    {
+        builder_tag = "ling_build", -- 只有绫可以制作
+        no_deconstruction = true,   -- 不能拆解
+        actionstr = "制作",         -- 制作按钮文本
+    },
+    {"CHARACTER", "RESTORATION"}    -- 分类标签
+)
+
+-- 更新配方描述
+STRINGS.RECIPE_DESC.BEARGER_FUR = "消耗100点生命值制作熊皮"
+STRINGS.RECIPE_DESC.COONTAIL = "消耗15点生命值制作猫尾"
+STRINGS.RECIPE_DESC.TORCH = "消耗1个树枝和5点精神值制作火把"
+STRINGS.RECIPE_DESC.NIGHTMAREFUEL = "消耗10点精神值制作噩梦燃料"
+STRINGS.RECIPE_DESC.MANRABBIT_TAIL = "消耗30点生命值制作兔毛"
+STRINGS.RECIPE_DESC.SILK = "消耗10点生命值和5点精神值制作蜘蛛网"

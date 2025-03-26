@@ -1,72 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
-    <folder id="0" name="swap_wuyi_rabbit_doll">
-        <file id="0" name="swap_wuyi_rabbit_doll/swap_wuyi_rabbit_doll-0.png" width="0" height="0" pivot_x="0.195415" pivot_y="0.427573"/>
+    <folder id="0" name="swap_ling_backpack">
+        <file id="0" name="swap_ling_backpack/swap_ling_backpack-0.png" width="220" height="160" pivot_x="0.195415" pivot_y="0.427573"/>
     </folder>
-    <folder id="1" name="swap_ling_backpack">
-        <file id="0" name="swap_ling_backpack/swap_ling_backpack-0.png" width="220" height="160" pivot_x="0" pivot_y="1"/>
-    </folder>
-    <entity id="0" name="swap_wuyi_rabbit_doll">
-        <animation id="0" name="BUILD" length="1000">
+    <entity id="0" name="swap_ling_backpack">
+        <animation id="0" name="idle" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="swap_ling_backpack-0" folder="1" file="0" abs_x="-81.118881" abs_y="159.440559" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="0"/>
-                </key>
-                <key id="1" time="25"/>
-                <key id="2" time="50"/>
-                <key id="3" time="76"/>
-                <key id="4" time="100"/>
-                <key id="5" time="125"/>
-                <key id="6" time="150"/>
-                <key id="7" time="175"/>
-                <key id="8" time="200"/>
-                <key id="9" time="225"/>
-                <key id="10" time="250"/>
-                <key id="11" time="275"/>
-                <key id="12" time="300"/>
-                <key id="13" time="325"/>
-                <key id="14" time="351"/>
-                <key id="15" time="376"/>
-                <key id="16" time="401"/>
-                <key id="17" time="426"/>
-                <key id="18" time="451"/>
-                <key id="19" time="476"/>
-                <key id="20" time="501"/>
-                <key id="21" time="526"/>
-                <key id="22" time="551"/>
-                <key id="23" time="576"/>
-                <key id="24" time="601"/>
-                <key id="25" time="626"/>
-                <key id="26" time="651"/>
-                <key id="27" time="676"/>
-                <key id="28" time="701"/>
-                <key id="29" time="726"/>
-                <key id="30" time="751"/>
-                <key id="31" time="776"/>
-                <key id="32" time="801"/>
-                <key id="33" time="826"/>
-                <key id="34" time="851"/>
-                <key id="35" time="876"/>
-                <key id="36" time="901"/>
-                <key id="37" time="926"/>
-                <key id="38" time="951"/>
-                <key id="39" time="976"/>
-                <key id="40" time="1000"/>
-                <key id="41" time="1001">
-                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="swap_ling_backpack-0" folder="0" file="0" abs_x="-59.6954" abs_y="-11.9276" abs_pivot_x="0.195415" abs_pivot_y="0.427573" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="swap_wuyi_rabbit_doll">
-                <key id="0" time="1001" spin="0">
-                    <object folder="0" file="0" x="-59.6954" y="-11.9276" angle="0"/>
-                </key>
-            </timeline>
-            <timeline id="1" name="swap_ling_backpack-0">
+            <timeline id="0" name="swap_ling_backpack-0">
                 <key id="0" spin="0">
-                    <object folder="1" file="0" x="-81.118881" y="159.440559"/>
-                </key>
-                <key id="1" time="25" spin="0">
-                    <object folder="1" file="0" x="-81.118881" y="159.440559"/>
+                    <object folder="0" file="0" x="-59.6954" y="-11.9276" angle="0"/>
                 </key>
             </timeline>
         </animation>

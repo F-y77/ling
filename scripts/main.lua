@@ -12,6 +12,8 @@ modimport("scripts/ling_widget.lua")
 
 -- 导入其他模块
 modimport("scripts/ling_asset.lua")
--- 不导入配方模块，避免错误
--- modimport("scripts/ling_recipe.lua")
+
+-- 导入配方模块
+modimport("scripts/ling_recipe.lua")
+
 -- 这里可以添加其他模块的导入 
