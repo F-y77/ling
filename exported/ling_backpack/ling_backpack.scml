@@ -1,28 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
-    <folder id="0" name="backpack">
-        <file id="0" name="backpack/backpack-0.png" width="0" height="0" pivot_x="0.373793" pivot_y="0.574775"/>
-        <file id="1" name="backpack/backpack-1.png" width="0" height="0" pivot_x="0.565484" pivot_y="0.541288"/>
+    <folder id="0" name="wuyi_rabbit_doll">
+        <file id="0" name="wuyi_rabbit_doll/wuyi_rabbit_doll-0.png" width="0" height="0" pivot_x="0.419438" pivot_y="0.15131"/>
     </folder>
-    <folder id="1" name="swap_body">
-        <file id="0" name="swap_body/swap_body-0.png" width="164" height="148" pivot_x="0.517683" pivot_y="0.0990287"/>
+    <folder id="1" name="ling_backpack">
+        <file id="0" name="ling_backpack/ling_backpack-0.png" width="150" height="200" pivot_x="0" pivot_y="1"/>
     </folder>
     <entity id="0" name="ling_backpack">
-        <animation id="0" name="anim" length="34">
+        <animation id="0" name="idle" length="1000">
             <mainline>
                 <key id="0">
-                    <object_ref id="0" name="swap_body" folder="1" file="0" abs_x="2.9" abs_y="0.4" abs_pivot_x="0.517683" abs_pivot_y="0.099029" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="0" name="ling_backpack-0" folder="1" file="0" abs_x="-57.970649" abs_y="181.996066" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="0"/>
                 </key>
-                <key id="1" time="34">
-                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                <key id="1" time="25"/>
+                <key id="2" time="50"/>
+                <key id="3" time="76"/>
+                <key id="4" time="100"/>
+                <key id="5" time="125"/>
+                <key id="6" time="150"/>
+                <key id="7" time="175"/>
+                <key id="8" time="200"/>
+                <key id="9" time="225"/>
+                <key id="10" time="250"/>
+                <key id="11" time="275"/>
+                <key id="12" time="300"/>
+                <key id="13" time="325"/>
+                <key id="14" time="351"/>
+                <key id="15" time="376"/>
+                <key id="16" time="401"/>
+                <key id="17" time="426"/>
+                <key id="18" time="451"/>
+                <key id="19" time="476"/>
+                <key id="20" time="501"/>
+                <key id="21" time="526"/>
+                <key id="22" time="551"/>
+                <key id="23" time="576"/>
+                <key id="24" time="601"/>
+                <key id="25" time="626"/>
+                <key id="26" time="651"/>
+                <key id="27" time="676"/>
+                <key id="28" time="701"/>
+                <key id="29" time="726"/>
+                <key id="30" time="751"/>
+                <key id="31" time="776"/>
+                <key id="32" time="801"/>
+                <key id="33" time="826"/>
+                <key id="34" time="851"/>
+                <key id="35" time="876"/>
+                <key id="36" time="901"/>
+                <key id="37" time="926"/>
+                <key id="38" time="951"/>
+                <key id="39" time="976"/>
+                <key id="40" time="1000"/>
+                <key id="41" time="1001">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
                 </key>
             </mainline>
-            <timeline id="0" name="swap_body">
-                <key id="0" spin="0">
-                    <object folder="1" file="0" x="2.9" y="0.4" angle="0"/>
+            <timeline id="0" name="wuyi_rabbit_doll">
+                <key id="0" time="1001" spin="0">
+                    <object folder="0" file="0" x="0.8052" y="-0.375948" angle="0"/>
                 </key>
-                <key id="1" time="34" spin="0">
-                    <object folder="1" file="0" x="2.9" y="0.4" angle="0"/>
+            </timeline>
+            <timeline id="1" name="ling_backpack-0">
+                <key id="0" spin="0">
+                    <object folder="1" file="0" x="-57.970649" y="181.996066" angle="0"/>
+                </key>
+                <key id="1" time="25" spin="0">
+                    <object folder="1" file="0" x="-57.970649" y="181.996066" angle="0"/>
                 </key>
             </timeline>
         </animation>

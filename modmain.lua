@@ -7,40 +7,52 @@ PrefabFiles = {
 }
 
 Assets = {
+    --存档图片
     Asset( "IMAGE", "images/saveslot_portraits/ling.tex" ),
     Asset( "ATLAS", "images/saveslot_portraits/ling.xml" ),
 
+    --选择角色图片-已拥有
     Asset( "IMAGE", "images/selectscreen_portraits/ling.tex" ),
     Asset( "ATLAS", "images/selectscreen_portraits/ling.xml" ),
 	
+    --选择角色图片-未拥有
     Asset( "IMAGE", "images/selectscreen_portraits/ling_silho.tex" ),
     Asset( "ATLAS", "images/selectscreen_portraits/ling_silho.xml" ),
 
+    --大头像-角色选择界面
     Asset( "IMAGE", "bigportraits/ling.tex" ),
     Asset( "ATLAS", "bigportraits/ling.xml" ),
 	
+    --地图图标
 	Asset( "IMAGE", "images/map_icons/ling.tex" ),
 	Asset( "ATLAS", "images/map_icons/ling.xml" ),
 	
+    --TAP键位显示的人物头像
 	Asset( "IMAGE", "images/avatars/avatar_ling.tex" ),
     Asset( "ATLAS", "images/avatars/avatar_ling.xml" ),
 	
+    --TAP键位显示的幽灵头像
 	Asset( "IMAGE", "images/avatars/avatar_ghost_ling.tex" ),
     Asset( "ATLAS", "images/avatars/avatar_ghost_ling.xml" ),
 	
+    --自检头像，人物检查界面头像
 	Asset( "IMAGE", "images/avatars/self_inspect_ling.tex" ),
     Asset( "ATLAS", "images/avatars/self_inspect_ling.xml" ),
 	
+    --名字
 	Asset( "IMAGE", "images/names_ling.tex" ),
     Asset( "ATLAS", "images/names_ling.xml" ),
-	
+
+    --金色名字
 	Asset( "IMAGE", "images/names_gold_ling.tex" ),
     Asset( "ATLAS", "images/names_gold_ling.xml" ),
 
+    --背包
     Asset("ATLAS", "images/inventoryimages/ling_backpack.xml"),
     Asset("IMAGE", "images/inventoryimages/ling_backpack.tex"),
 }
 
+-- 添加地图图标
 AddMinimapAtlas("images/map_icons/ling.xml")
 
 local require = GLOBAL.require
