@@ -4,6 +4,7 @@ PrefabFiles = {
 	"ling",
 	"ling_none",
 	"ling_backpack",
+	"ice_katana",
 }
 
 Assets = {
@@ -50,6 +51,10 @@ Assets = {
     --背包
     Asset("ATLAS", "images/inventoryimages/ling_backpack.xml"),
     Asset("IMAGE", "images/inventoryimages/ling_backpack.tex"),
+
+    -- 冷风太刀资源
+    Asset("ATLAS", "images/inventoryimages/ice_katana.xml"),
+    Asset("IMAGE", "images/inventoryimages/ice_katana.tex"),
 }
 
 -- 添加地图图标
@@ -70,9 +75,9 @@ STRINGS.CHARACTERS.LING = require "speech_ling"
 -- 角色选择界面的文本
 STRINGS.CHARACTER_TITLES.ling = "气象学家"  -- 角色头衔
 STRINGS.CHARACTER_NAMES.ling = "绫"  -- 角色名字
-STRINGS.CHARACTER_DESCRIPTIONS.ling = "*喜欢熊猫\n*气象学家\n*冷酷中带点可爱"  -- 角色描述
+STRINGS.CHARACTER_DESCRIPTIONS.ling = "*喜欢熊猫-生日2/27\n*气象学家-双鱼座\n*冷酷中带点可爱-INFP"  -- 角色描述
 STRINGS.CHARACTER_QUOTES.ling = "\"让我看看今天的天气如何？\""  -- 角色台词
-STRINGS.CHARACTER_SURVIVABILITY.ling = "复杂"  -- 生存难度评级
+STRINGS.CHARACTER_SURVIVABILITY.ling = "取决于今天的天气"  -- 生存难度评级
 
 -- 游戏内的角色名称
 STRINGS.NAMES.LING = "绫"
@@ -249,3 +254,182 @@ STRINGS.RECIPE_DESC.TORCH = "消耗1个树枝和5点精神值制作火把"
 STRINGS.RECIPE_DESC.NIGHTMAREFUEL = "消耗10点精神值制作噩梦燃料"
 STRINGS.RECIPE_DESC.MANRABBIT_TAIL = "消耗30点生命值制作兔毛"
 STRINGS.RECIPE_DESC.SILK = "消耗10点生命值和5点精神值制作蜘蛛网"
+
+-- 添加冷风太刀配方
+AddRecipe2(
+    "ice_katana",                   -- 配方名称
+    {                               -- 材料列表
+        Ingredient("ice", 10),      -- 10个冰
+        Ingredient("goldnugget", 5), -- 5个金块
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 30)  -- 消耗30点精神值
+    },
+    TECH.SCIENCE_TWO,               -- 需要科技二本
+    {
+        builder_tag = "ling_build", -- 只有绫可以制作
+        no_deconstruction = true,   -- 不能拆解
+        actionstr = "制作",         -- 制作按钮文本
+        atlas = "images/inventoryimages/ice_katana.xml",
+        image = "ice_katana.tex"
+    },
+    {"CHARACTER", "WEAPONS"}        -- 分类标签
+)
+
+-- 更新配方描述
+STRINGS.RECIPE_DESC.ICE_KATANA = "绫的专属武器，攻击距离长并附带冰冻效果"
+
+-- 添加物品名称和描述
+STRINGS.NAMES.ICE_KATANA = "冷风"
+STRINGS.CHARACTERS.GENERIC.DESCRIBE.ICE_KATANA = "一把散发着寒气的太刀。"
+STRINGS.CHARACTERS.LING.DESCRIBE.ICE_KATANA = "我的冷风太刀，能冻结敌人的灵魂！"
+
+-- 在modmain.lua中添加这段代码
+local Combat = require("components/combat")
+local old_SetTarget = Combat.SetTarget
+Combat.SetTarget = function(self, target, ...)
+    if target and target:HasTag("ling") and self.inst and (
+        self.inst:HasTag("rabbit") or 
+        self.inst:HasTag("raccoon") or 
+        self.inst:HasTag("bearger") or 
+        self.inst:HasTag("pig") or 
+        self.inst:HasTag("merm") or 
+        self.inst:HasTag("manrabbit")
+    ) then
+        return nil -- 不攻击绫
+    end
+    return old_SetTarget(self, target, ...)
+end
+
+-- 天气风向标配方
+AddRecipe2(
+    "staff_tornado",                      
+    {                                     
+        Ingredient("twigs", 2),           
+        Ingredient("goldnugget", 3),      
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 75)  
+    },
+    TECH.NONE,                           
+    {
+        builder_tag = "ling_build",      
+        no_deconstruction = true,        
+        actionstr = "制作",
+    },
+    {"CHARACTER", "MAGIC"}               
+)
+
+-- 末日将至配方
+AddRecipe2(
+    "book_brimstone",                    
+    {                                    
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 25),   
+        Ingredient(CHARACTER_INGREDIENT.HEALTH, 10)     -- 只保留精神值和血量消耗
+    },
+    TECH.NONE,
+    {
+        builder_tag = "ling_build",
+        no_deconstruction = true,
+        actionstr = "制作",
+    },
+    {"CHARACTER", "MAGIC"}
+)
+
+-- 意念控火术详解配方
+AddRecipe2(
+    "book_fire",                         
+    {
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 25)    -- 只保留精神值消耗
+    },
+    TECH.NONE,
+    {
+        builder_tag = "ling_build",
+        no_deconstruction = true,
+        actionstr = "制作",
+    },
+    {"CHARACTER", "MAGIC"}
+)
+
+-- 控温学配方
+AddRecipe2(
+    "book_temperature",                  
+    {
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 40)    
+    },
+    TECH.NONE,
+    {
+        builder_tag = "ling_build",
+        no_deconstruction = true,
+        actionstr = "制作",
+    },
+    {"CHARACTER", "MAGIC"}
+)
+
+-- 永恒之光配方
+AddRecipe2(
+    "book_light",                        
+    {
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 10)     -- 只保留精神值消耗
+    },
+    TECH.NONE,
+    {
+        builder_tag = "ling_build",
+        no_deconstruction = true,
+        actionstr = "制作",
+    },
+    {"CHARACTER", "MAGIC"}
+)
+
+-- 实用求雨仪式配方
+AddRecipe2(
+    "book_rain",                         
+    {
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 15)    -- 只保留精神值消耗
+    },
+    TECH.NONE,
+    {
+        builder_tag = "ling_build",
+        no_deconstruction = true,
+        actionstr = "制作",
+    },
+    {"CHARACTER", "MAGIC"}
+)
+
+-- 月之魔典配方
+AddRecipe2(
+    "book_moon",                         
+    {
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 55),   
+        Ingredient(CHARACTER_INGREDIENT.HEALTH, 10)    -- 只保留精神值和血量消耗
+    },
+    TECH.NONE,
+    {
+        builder_tag = "ling_build",
+        no_deconstruction = true,
+        actionstr = "制作",
+    },
+    {"CHARACTER", "MAGIC"}
+)
+
+-- 永恒之光之复兴版本配方
+AddRecipe2(
+    "book_light_upgraded",               
+    {
+        Ingredient("book_light", 1),                   
+        Ingredient(CHARACTER_INGREDIENT.SANITY, 35)    
+    },
+    TECH.NONE,
+    {
+        builder_tag = "ling_build",
+        no_deconstruction = true,
+        actionstr = "制作",
+    },
+    {"CHARACTER", "MAGIC"}
+)
+
+-- 更新配方描述，移除饱食度相关的描述
+STRINGS.RECIPE_DESC.STAFF_TORNADO = "消耗2个木棍、3个金子和75点精神值制作"
+STRINGS.RECIPE_DESC.BOOK_BRIMSTONE = "消耗25点精神值和5点血量制作"
+STRINGS.RECIPE_DESC.BOOK_FIRE = "消耗20点精神值制作"
+STRINGS.RECIPE_DESC.BOOK_TEMPERATURE = "消耗35点精神值制作"
+STRINGS.RECIPE_DESC.BOOK_LIGHT = "消耗5点精神值制作"
+STRINGS.RECIPE_DESC.BOOK_RAIN = "消耗10点精神值制作"
+STRINGS.RECIPE_DESC.BOOK_MOON = "消耗50点精神值和10点血量制作"
+STRINGS.RECIPE_DESC.BOOK_LIGHT_UPGRADED = "消耗1个永恒之光和30点精神值制作"
