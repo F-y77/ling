@@ -2,7 +2,7 @@
 name = "绫"
 description = "ling "
 author = "Va6gn"
-version = "0.4" -- This is the version of the template. Change it to your own number.
+version = "0.5" -- This is the version of the template. Change it to your own number.
 
 -- This is the URL name of the mod's thread on the forum; the part after the ? and before the first & in the url
 forumthread = "/files/file/950-extended-sample-character/"
